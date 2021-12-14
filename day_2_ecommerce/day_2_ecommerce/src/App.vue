@@ -9,6 +9,10 @@ import { menuItems } from "./data";
 
 const menuData = reactive(menuItems);
 
+const resetCount = (item) => {
+    item.count = 0;
+};
+
 const increaseCount = (item) => {
     item.count++;
 };
@@ -20,7 +24,11 @@ const decreaseCount = (item) => {
 
 <template>
     <div class="wrapper menu">
-        <panel-menu :data="menuData" @addToCart="increaseCount" />
+        <panel-menu
+            :data="menuData"
+            @addToCart="increaseCount"
+            @reset="resetCount"
+        />
         <panel-cart
             :data="menuData"
             @increaseCount="increaseCount"

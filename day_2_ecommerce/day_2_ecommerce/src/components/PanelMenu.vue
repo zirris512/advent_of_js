@@ -1,6 +1,6 @@
 <script setup>
 defineProps(["data"]);
-const emits = defineEmits(["addToCart"]);
+const emits = defineEmits(["addToCart", "reset"]);
 
 const showButton = (item) => {
     if (item.count > 0) {
@@ -11,6 +11,10 @@ const showButton = (item) => {
 
 const addItem = (item) => {
     emits("addToCart", item);
+};
+
+const resetButton = (item) => {
+    emits("reset", item);
 };
 </script>
 
@@ -32,7 +36,7 @@ const addItem = (item) => {
                     >
                         Add to Cart
                     </button>
-                    <button class="in-cart" v-else>
+                    <button class="in-cart" v-else @click="resetButton(item)">
                         <img src="/images/check.svg" alt="Check" />
                         In Cart
                     </button>
