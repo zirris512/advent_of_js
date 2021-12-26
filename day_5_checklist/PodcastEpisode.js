@@ -1,8 +1,5 @@
 const template = document.createElement("template");
 template.innerHTML = `
-<style>
-@import url("./styles.css")
-</style>
 <li>
     <label>
         <input type="checkbox" />
