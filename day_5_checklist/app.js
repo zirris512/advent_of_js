@@ -1,6 +1,22 @@
-// import { episodes } from "./data.js";
+import { episodes } from "./data.js";
+import { PodcastEpisode } from "./PodcastEpisode.js";
 
-const checkboxes = document.querySelectorAll("input[type='checkbox']");
+customElements.define("podcast-episode", PodcastEpisode);
+
+const episodeList = document.querySelector(".episodes");
+
+episodes.forEach((episode) => {
+    episodeList.append(
+        new PodcastEpisode(
+            `episode-${episode.id}`,
+            `${episode.id} || ${episode.name}`
+        )
+    );
+});
+
+const checkboxes = document.querySelectorAll(
+    "podcast-episode input[type='checkbox']"
+);
 let previousChecked;
 
 checkboxes.forEach((checkbox, index) => {
@@ -8,14 +24,13 @@ checkboxes.forEach((checkbox, index) => {
         document.getSelection().removeAllRanges();
         if (!isNaN(previousChecked) && e.shiftKey) {
             for (
-                let i = Math.min(index, previousChecked);
+                let i = Math.min(index, previousChecked) + 1;
                 i < Math.max(index, previousChecked);
                 i++
             ) {
                 checkboxes[i].checked = true;
             }
-        } else {
-            previousChecked = index;
         }
+        previousChecked = index;
     });
 });
