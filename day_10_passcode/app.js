@@ -7,7 +7,7 @@ const verifyInput = (value) => {
 };
 
 passcodeInputs.forEach((input) => {
-    input.addEventListener("keyup", (e) => {
+    input.addEventListener("input", (e) => {
         if (!verifyInput(input.value)) {
             input.value = "";
             return;
@@ -32,5 +32,6 @@ passcodeInputs.forEach((input) => {
             input.value = codeArr[idx];
         });
         passcodeInputs[passcodeInputs.length - 1].focus();
+        console.log("Success");
     });
 });
