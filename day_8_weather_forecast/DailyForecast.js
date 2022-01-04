@@ -42,9 +42,10 @@ export class DailyForecast extends HTMLElement {
         forecastWrapper.classList.add(weatherAttr);
         weatherImg.innerHTML = `<svg role="img" width="${iconWidthAttr}" height="${iconHeightAttr}" viewBox="0 0 ${iconWidthAttr} ${iconHeightAttr}"><use xlink:href="#${weatherAttr}"></use></svg>`;
         currentTemp.innerHTML = `${currentAttr}<span class="degrees">&deg;</span>`;
-        precipitationChance.innerHTML = `<svg role="img" class="icon"><use xlink:href="#precipitation"></use></svg>${rainAttr}`;
+        precipitationChance.innerHTML = `<svg role="img" class="icon"><use xlink:href="#precipitation"></use></svg>${rainAttr}%`;
         lowTemp.innerHTML = `<svg role="img" class="icon"><use xlink:href="#low"></use></svg>${lowAttr}&deg;`;
 
         this.append(content.cloneNode(true));
+        forecastWrapper.classList.remove(weatherAttr);
     }
 }
